@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="enter_btn text-center p-4 rounded shadow-sm bg-light">
+        <h2 class="mb-4">恋人の「大丈夫」が本当に大丈夫か恋愛マスターAIが判断します！</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="combineTexts()">
+            <div class="form-group">
+                <label for="text1" class="font-weight-bold">どんな時:</label>
+                <input type="text" id="text1" name="text1" class="form-control" placeholder="例: 喧嘩の後">
+            </div>
+            <div class="form-group">
+                <label for="text2" class="font-weight-bold">何と言った？:</label>
+                <input type="text" id="text2" name="text2" class="form-control" placeholder="例: 大丈夫だよ">
+            </div>
+            <input type="hidden" id="combined_text" name="combined_text">
+            <button type="submit" class="btn btn-primary btn-lg mt-3" style="background-color: #ff69b4; border-color: #ff69b4; color: white; font-weight: bold;">送信</button>
+        </form>
+    </div>
+
+    <div class="emotion_description mt-5 p-4 rounded shadow-sm bg-white">
+        <h3 class="text-center text-info mb-4">AIが判断する10つの感情</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">本当に大丈夫: 本当に問題がないと感じている場合。</li>
+                    <li class="list-group-item">怒り: 何かに対して不満や怒りを感じている可能性があります。</li>
+                    <li class="list-group-item">悲しみ: 何か悲しい出来事があったかもしれません。</li>
+                    <li class="list-group-item">呆れ: 相手の言動に対して呆れている可能性があります。</li>
+                    <li class="list-group-item">寂しさ: 寂しいと感じている場合があります。</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">嫉妬: 他人や状況に対して嫉妬を感じているかもしれません。</li>
+                    <li class="list-group-item">放っておいて欲しい: 今は一人にしてほしいと思っている可能性があります。</li>
+                    <li class="list-group-item">疲れ: 精神的または肉体的に疲れているかもしれません。</li>
+                    <li class="list-group-item">戸惑い: どう対応して良いかわからず戸惑っている場合があります。</li>
+                    <li class="list-group-item">その他: 特に当てはまらない感情や状況。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function combineTexts() {
+        // テキストボックスの値を取得
+        const text1 = document.getElementById('text1').value;
+        const text2 = document.getElementById('text2').value;
+
+        // 結合して隠しフィールドにセット
+        const combinedText = text1 + " " + "「" + text2 + "」";
+        document.getElementById('combined_text').value = combinedText;
+    }
+</script>
+
+{% endblock %}

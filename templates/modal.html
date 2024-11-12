@@ -1,0 +1,60 @@
+<!-- modal.html -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">予測結果についてのフィードバック</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>予測結果は正しかったですか？</p>
+                <form id="feedbackForm" action="/feedback" method="post">
+                    <input type="hidden" id="topLabel" name="top_label" value="{{ top_index }}">
+                    <div class="form-group">
+                        <label>正しかったかどうかを選択してください:</label>
+                        <select class="form-control" id="correctness" name="correctness" required>
+                            <option value="">選択してください</option>
+                            <option value="正しい">正しかった</option>
+                            <option value="間違い">間違っていた</option>
+                            <option value="分からない">分からなかった</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="emotion-group" style="display: none;">
+                        <label>どの感情が最も当てはまりますか？</label>
+                        <select class="form-control" id="emotion" name="emotion">
+                            <option value="">選択してください</option>
+                            <option value="0">本当に大丈夫</option>
+                            <option value="1">怒り</option>
+                            <option value="2">悲しみ</option>
+                            <option value="3">呆れ</option>
+                            <option value="4">寂しさ</option>
+                            <option value="5">嫉妬</option>
+                            <option value="6">放っておいて欲しい</option>
+                            <option value="7">疲れ</option>
+                            <option value="8">戸惑い</option>
+                            <option value="9">その他</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3" style="background-color: #ff69b4; border-color: #ff69b4; color: white; font-weight: bold;">送信</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // 「正しかったかどうか」の選択肢変更時に表示を切り替え
+        $('#correctness').on('change', function () {
+            if ($(this).val() === '間違い') {
+                $('#emotion-group').show();
+                $('#emotion').attr('required', 'required'); // 感情選択を必須にする
+            } else {
+                $('#emotion-group').hide();
+                $('#emotion').removeAttr('required'); // 感情選択を必須から解除
+            }
+        });
+    });
+</script>

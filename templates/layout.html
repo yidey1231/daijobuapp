@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        
+        <!-- ファビコンのリンク -->
+        <link rel="icon" type="image/png" href="../static/images/logo.png">
+        
+        <title>ダイジョウブチェッカー</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="navbar-brand" href="{{ url_for('index') }}" style="font-family: 'Pacifico', cursive; font-size: 1.8rem; color: #ff6f61;">
+              <img src="../static/images/logo.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+              ダイジョウブチェッカー
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+              </div>
+          </div>
+        </nav>
+        {% block content %}{% endblock %}
+    </body>
+</html>
