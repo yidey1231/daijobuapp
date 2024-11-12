@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 <div class="container my-5">
     <div class="enter_btn text-center p-4 rounded shadow-sm bg-light">
         <h2 class="mb-4">恋人の「大丈夫」が本当に大丈夫か恋愛マスターAIが判断します！</h2>
-        <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="combineTexts()">
+        <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="submitForm(event)">
             <div class="form-group">
                 <label for="text1" class="font-weight-bold">どんな時:</label>
                 <input type="text" id="text1" name="text1" class="form-control" placeholder="例: 喧嘩の後">
@@ -43,16 +45,12 @@
     </div>
 </div>
 
-<script>
-    function combineTexts() {
-        // テキストボックスの値を取得
-        const text1 = document.getElementById('text1').value;
-        const text2 = document.getElementById('text2').value;
+<!-- ローディングオーバーレイ -->
+<div id="loading" class="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+    <div class="loading-text">AI診断中...</div>
+</div>
 
-        // 結合して隠しフィールドにセット
-        const combinedText = text1 + " " + "「" + text2 + "」";
-        document.getElementById('combined_text').value = combinedText;
-    }
-</script>
+<script src="{{ url_for('static', filename='loading_script.js') }}"></script>
 
 {% endblock %}
