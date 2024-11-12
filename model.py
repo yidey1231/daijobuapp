@@ -1,5 +1,5 @@
 import torch
-from transformers import BertJapaneseTokenizer, XLMRobertaForSequenceClassification ,BertForSequenceClassification
+from transformers import BertJapaneseTokenizer,BertForSequenceClassification
 
 # モデルとトークナイザーの読み込み
 model_path = "saved_model_1"
